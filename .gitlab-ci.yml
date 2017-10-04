@@ -5,6 +5,7 @@ pages:
   script:
   - mkdir .public
   - cp -r ./docs .public
+  - ls .public
   - mv .public public
   artifacts:
     paths:
