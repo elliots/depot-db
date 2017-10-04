@@ -6,6 +6,7 @@
   "types": "src/depot.ts",
   "scripts": {
     "build": "tsc",
+    "docs": "typedoc --out ./docs",
     "test": "mocha ./dist/tests/**"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "@types/levelup": "0.0.30",
     "@types/mocha": "^2.2.43",
     "mocha": "^4.0.0",
+    "typedoc": "^0.8.0",
     "typescript": "^2.5.3"
   }
 }
