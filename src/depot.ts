@@ -1,6 +1,6 @@
 import levelup = require("levelup");
 
-export class Store<TKey, TValue> {
+export class Depot<TKey, TValue> {
     private readonly db: levelup.LevelUp;
 
     constructor(location: string) {
