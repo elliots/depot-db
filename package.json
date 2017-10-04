@@ -1,12 +1,12 @@
 {
   "name": "depot-db",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "dist/depot.js",
-  "types": "src/depot.ts",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "docs": "typedoc --out ./docs",
+    "docs": "rm -rf ./docs; typedoc --out ./docs",
     "test": "mocha ./dist/tests/**"
   },
   "repository": {
