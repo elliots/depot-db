@@ -53,3 +53,7 @@ people.find({
 // Find a person by their key (rejects if person is not found)
 people.get("John").then(/** { firstname: "John", lastname: "Doe", age: 32 } */);
 ```
+
+## API
+
+API documentation can be found [here](https://youngwerth.gitlab.io/depot)
