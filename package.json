@@ -26,12 +26,12 @@
   },
   "homepage": "https://gitlab.com/youngwerth/depot#README",
   "dependencies": {
+    "@types/leveldown": "^1.7.0",
+    "@types/levelup": "0.0.30",
     "leveldown": "^1.7.2",
     "levelup": "^1.3.9"
   },
   "devDependencies": {
-    "@types/leveldown": "^1.7.0",
-    "@types/levelup": "0.0.30",
     "@types/mocha": "^2.2.43",
     "mocha": "^4.0.0",
     "typedoc": "^0.8.0",
