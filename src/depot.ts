@@ -1,4 +1,5 @@
 import levelup = require("levelup");
+import stream = require("stream");
 
 export class Depot<TKey, TValue> {
     private readonly db: levelup.LevelUp;

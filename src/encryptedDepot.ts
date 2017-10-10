@@ -1,5 +1,6 @@
 import levelup = require("levelup");
 import { encrypt, decrypt } from "./encryption";
+import stream = require("stream");
 
 export class EncryptedDepot<TKey, TValue> {
     private readonly db: levelup.LevelUp;
