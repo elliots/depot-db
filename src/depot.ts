@@ -1,18 +1,29 @@
 import level = require("level");
 
-export class Depot<TKey, TValue> {
+export class Depot<T> {
     private readonly db: level.LevelUp<{}, {}, {}, {}>;
 
-    constructor(location: string) {
-        this.db = level(location, { keyEncoding: "utf8", valueEncoding: "json" });
+    constructor(location: string, encoding?: {
+        encoder: (data: T) => Buffer,
+        decoder: (data: Buffer) => T,
+    }) {
+        let valueEncoding;
+
+        if (!!encoding) {
+            valueEncoding = { buffer: true, type: "CustomDepotEncoding", ...encoding };
+        } else {
+            valueEncoding = "json";
+        }
+
+        this.db = level(location, { keyEncoding: "utf8", valueEncoding });
     }
 
-    private async all(where?: (item: TValue) => boolean, limit?: number): Promise<TValue[]> {
+    private async all(where?: (item: T) => boolean, limit?: number): Promise<T[]> {
         const stream = this.db.createValueStream()
-        const result: TValue[] = [];
-        return new Promise<TValue[]>((resolve, reject) => {
+        const result: T[] = [];
+        return new Promise<T[]>((resolve, reject) => {
             stream
-            .on('data', function(data: TValue) {
+            .on('data', function(data: T) {
                 if (!!limit && !(result.length < limit)) return;
                 if (!!where && !where(data)) return;
                 result.push(data);
@@ -22,21 +33,21 @@ export class Depot<TKey, TValue> {
         });
     }
 
-    async put(key: TKey, value: TValue): Promise<void> {
+    async put(key: string, value: T): Promise<void> {
         return this.db.put(key, value);
     }
 
-    async get(key: TKey): Promise<TValue> {
+    async get(key: string): Promise<T> {
         return this.db.get(key);
     }
 
-    async del(key: TKey): Promise<void> {
+    async del(key: string): Promise<void> {
         return this.db.del(key);
     }
 
     async find(query?: {
-        where?: (item: TValue) => boolean;
-        sort?: (item1: TValue, item2: TValue) => number;
+        where?: (item: T) => boolean;
+        sort?: (item1: T, item2: T) => number;
         limit?: number
     }) {
         if (query) {
@@ -58,12 +69,16 @@ export class Depot<TKey, TValue> {
         });
     }
 
-    forEach(cb: (item: TValue, stop: () => void) => void): void {
+    forEach(cb: (item: T, stop: () => void) => void): void {
         let stopped = false;
         let stopper = () => stopped = true;
         this.db.createValueStream()
-            .on('data', function (data: TValue) {
+            .on('data', function (data: T) {
                 if (!stopped) cb(data, stopper);
             });
+    }
+
+    createReadStream(options?: any) {
+        return this.db.createReadStream(options);
     }
 }
