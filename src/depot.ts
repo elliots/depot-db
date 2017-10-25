@@ -1,11 +1,10 @@
-import levelup = require("levelup");
-import stream = require("stream");
+import level = require("level");
 
 export class Depot<TKey, TValue> {
-    private readonly db: levelup.LevelUp;
+    private readonly db: level.LevelUp<{}, {}, {}, {}>;
 
     constructor(location: string) {
-        this.db = levelup(location, { keyEncoding: "utf8", valueEncoding: "json" });
+        this.db = level(location, { keyEncoding: "utf8", valueEncoding: "json" });
     }
 
     private async all(where?: (item: TValue) => boolean, limit?: number): Promise<TValue[]> {
@@ -24,30 +23,15 @@ export class Depot<TKey, TValue> {
     }
 
     async put(key: TKey, value: TValue): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            this.db.put(key, value, e => {
-                if (e) return reject(e);
-                resolve();
-            });
-        });
+        return this.db.put(key, value);
     }
 
     async get(key: TKey): Promise<TValue> {
-        return new Promise<TValue>((resolve, reject) => {
-            this.db.get(key, (e, v) => {
-                if (e) return reject(e);
-                resolve(v);
-            });
-        });
+        return this.db.get(key);
     }
 
     async del(key: TKey): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            this.db.del(key, e => {
-                if (e) return reject(e);
-                resolve();
-            });
-        });
+        return this.db.del(key);
     }
 
     async find(query?: {
