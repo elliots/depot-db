@@ -1,7 +1,9 @@
 import level = require("level");
+import { DepotBackupEngine } from "./backup";
 
 export class Depot<T> {
     private readonly db: level.LevelUp<{}, {}, {}, {}>;
+    private readonly backupEngine: DepotBackupEngine;
 
     constructor(location: string, encoding?: {
         encoder: (data: T) => Buffer,
@@ -16,6 +18,7 @@ export class Depot<T> {
         }
 
         this.db = level(location, { keyEncoding: "utf8", valueEncoding });
+        this.backupEngine = new DepotBackupEngine(this.db);
     }
 
     private async all(where?: (item: T) => boolean, limit?: number): Promise<T[]> {
@@ -31,18 +34,6 @@ export class Depot<T> {
             .on('error', reject)
             .on('end', () => resolve(result));
         });
-    }
-
-    async put(key: string, value: T): Promise<void> {
-        return this.db.put(key, value);
-    }
-
-    async get(key: string): Promise<T> {
-        return this.db.get(key);
-    }
-
-    async del(key: string): Promise<void> {
-        return this.db.del(key);
     }
 
     async find(query?: {
@@ -78,7 +69,35 @@ export class Depot<T> {
             });
     }
 
+    async put(key: string, value: T): Promise<void> {
+        return this.db.put(key, value);
+    }
+
+    async get(key: string): Promise<T> {
+        return this.db.get(key);
+    }
+
+    async del(key: string): Promise<void> {
+        return this.db.del(key);
+    }
+
     createReadStream(options?: any) {
         return this.db.createReadStream(options);
+    }
+
+    createBackupStream() {
+        return this.backupEngine.createBackupStream();
+    }
+
+    backup(location: string) {
+        return this.backupEngine.backup(location)
+    }
+
+    loadBackup(location: string) {
+        return this.backupEngine.loadBackup(location);
+    }
+
+    loadFromBackupStream(source: NodeJS.ReadableStream) {
+        return this.backupEngine.loadFromBackupStream(source);
     }
 }
