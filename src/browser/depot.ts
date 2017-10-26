@@ -1,7 +1,9 @@
-import level = require("level");
+import levelup = require("levelup");
+import leveljs = require("level-js");
+import encode = require("encoding-down");
 
 export class Depot<T> {
-    private readonly db: level.LevelUp<{}, {}, {}, {}>;
+    private readonly db: levelup.LevelUp<{}, {}, {}, {}>;
 
     constructor(location: string, encoding?: {
         encoder: (data: T) => Buffer,
@@ -15,7 +17,7 @@ export class Depot<T> {
             valueEncoding = "json";
         }
 
-        this.db = level(location, { keyEncoding: "utf8", valueEncoding });
+        this.db = levelup(encode(leveljs(location)), { keyEncoding: "utf8", valueEncoding });
     }
 
     private async all(where?: (item: T) => boolean, limit?: number): Promise<T[]> {
