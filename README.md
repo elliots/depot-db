@@ -32,7 +32,7 @@ import { Depot } from "depot-db";
 type Person = { firstname: string, lastname: string, age: number };
 
 // Initialize a people database (Stored in /databases/people)
-const people = new Depot<string, Person>("/databases/people");
+const people = new Depot<Person>("/databases/people");
 
 // Store some people
 people.put("John", { firstname: "John", lastname: "Doe", age: 32 });
