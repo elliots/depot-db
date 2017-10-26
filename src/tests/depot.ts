@@ -4,7 +4,7 @@ import { Depot } from "../depot";
 
 describe("Depot", function() {
     type Person = { firstname: string, lastname: string, age: number, address: string }
-    const testDB = new Depot<string, Person>("./test-db");
+    const testDB = new Depot<Person>("./test-db");
 
     it("Stores a document", function() {
         return testDB.put("Drew", {
