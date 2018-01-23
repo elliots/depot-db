@@ -1,4 +1,3 @@
-/// </// <reference path="mocha" />
 import assert = require("assert");
 import { Depot } from "../depot";
 

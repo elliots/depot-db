@@ -1,6 +1,6 @@
 {
   "name": "depot-db",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -27,17 +27,15 @@
   "homepage": "https://gitlab.com/youngwerth/depot#README",
   "dependencies": {
     "encoding-down": "^2.3.4",
-    "level": "^2.0.0",
+    "level": "^2.1.1",
     "level-js": "^2.2.4",
-    "leveldown": "^2.0.0",
-    "levelup": "^2.0.0",
+    "levelup": "^2.0.1",
     "split": "^1.0.1",
     "through": "^2.3.8",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@types/leveldown": "^1.7.0",
-    "@types/mocha": "^2.2.43",
+    "@types/mocha": "^2.2.46",
     "@types/node": "^8.0.47",
     "@types/split": "^0.3.28",
     "@types/through": "0.0.29",
