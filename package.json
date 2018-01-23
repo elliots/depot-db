@@ -37,7 +37,6 @@
     "@types/node": "^8.0.47",
     "@types/split": "^0.3.28",
     "@types/through": "0.0.29"
-    ""
   },
   "devDependencies": {
     "mocha": "^4.0.0",
