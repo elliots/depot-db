@@ -1,6 +1,6 @@
-import levelup = require("levelup");
-import leveljs = require("level-js");
-import encode = require("encoding-down");
+const levelup = require("levelup");
+const leveljs = require("level-js");
+const encode = require("encoding-down");
 
 export class Depot<T> {
     private readonly db: any;

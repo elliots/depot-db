@@ -1,4 +1,4 @@
-import level = require("level");
+const level = require("level");
 
 export class Depot<T> {
     private readonly db: any;
