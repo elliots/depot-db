@@ -3,7 +3,7 @@ import leveljs = require("level-js");
 import encode = require("encoding-down");
 
 export class Depot<T> {
-    private readonly db: levelup.LevelUp<{}, {}, {}, {}>;
+    private readonly db: any;
 
     constructor(location: string, encoding?: {
         encoder: (data: T) => Buffer,

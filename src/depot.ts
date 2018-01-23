@@ -1,7 +1,7 @@
 import level = require("level");
 
 export class Depot<T> {
-    private readonly db: level.LevelUp<{}, {}, {}, {}>;
+    private readonly db: any;
 
     constructor(location: string, encoding?: {
         encoder: (data: T) => Buffer,
