@@ -42,7 +42,7 @@ people.put("Tony", { firstname: "Stark", lastname: "Doe", age: 45 });
 
 // Query people
 people.find({
-    where: person => age > 32
+    where: person => person.age > 32
 }).then(personsOlderThat32 => {
     // personsOlderThat32 = [
     //     { firstname: "Tim", lastname: "Burton", age: 61 },

@@ -1,6 +1,6 @@
 {
   "name": "depot-db",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
