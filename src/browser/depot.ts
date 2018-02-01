@@ -1,6 +1,6 @@
 import levelup = require("levelup");
 import leveljs = require("level-js");
-import encode = require("encoding-down");
+const encode = require("encoding-down");
 
 export class Depot<T> {
     private readonly db: levelup.LevelUp<{}, {}, {}, {}>;
