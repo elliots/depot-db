@@ -36,11 +36,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@types/leveldown": "^1.7.0",
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.47",
     "@types/split": "^0.3.28",
-    "@types/through": "0.0.29",
     "mocha": "^4.0.0",
     "typedoc": "^0.8.0",
     "typescript": "^2.5.3"
