@@ -1,7 +1,7 @@
-import level = require("level");
+const level = require("level");
 
 export class Depot<T> {
-    private readonly db: level.LevelUp<{}, {}, {}, {}>;
+    private readonly db: any;
 
     constructor(location: string, encoding?: {
         encoder: (data: T) => Buffer,
@@ -9,7 +9,7 @@ export class Depot<T> {
     }) {
         let valueEncoding;
 
-        if (!!encoding) {
+        if (encoding) {
             valueEncoding = { buffer: true, type: "CustomDepotEncoding", ...encoding };
         } else {
             valueEncoding = "json";

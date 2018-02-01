@@ -26,6 +26,7 @@
   },
   "homepage": "https://gitlab.com/youngwerth/depot#README",
   "dependencies": {
+    "@types/through": "0.0.29",
     "encoding-down": "^2.3.4",
     "level": "^2.0.0",
     "level-js": "^2.2.4",
