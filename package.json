@@ -30,10 +30,7 @@
     "@types/split": "^0.3.28",
     "@types/through": "0.0.29",
     "encoding-down": "^2.3.4",
-    "level": "^2.0.0",
-    "level-js": "^2.2.4",
-    "leveldown": "^2.0.0",
-    "levelup": "^2.0.0",
+    "level": "^6.0.0",
     "split": "^1.0.1",
     "through": "^2.3.8"
   },
